@@ -3,6 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <title>Baglung Brainrot</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@600;900&display=swap');
 
@@ -18,7 +19,7 @@
     /* Floating emoji chaos */
     .floating {
       position: fixed;
-      font-size: 2rem;
+      font-size: clamp(1.5rem, 2vw, 2.5rem);
       animation: float 10s infinite linear;
       opacity: 0.7;
       z-index: 0;
@@ -29,7 +30,7 @@
     }
 
     h1 {
-      font-size: 4rem;
+      font-size: clamp(2.5rem, 5vw, 4rem);
       margin: 30px 0;
       font-weight: 900;
       color: #ff00ff;
@@ -40,19 +41,16 @@
     }
 
     @keyframes flicker {
-      0%, 19%, 21%, 23%, 25%, 54%, 56%, 100% {
-        opacity: 1;
-      }
-      20%, 24%, 55% {
-        opacity: 0.3;
-      }
+      0%, 19%, 21%, 23%, 25%, 54%, 56%, 100% { opacity: 1; }
+      20%, 24%, 55% { opacity: 0.3; }
     }
 
     /* Section Tabs */
     .tabs {
       display: flex;
       justify-content: center;
-      gap: 20px;
+      flex-wrap: wrap;
+      gap: 15px;
       margin-bottom: 30px;
       z-index: 2;
       position: relative;
@@ -99,11 +97,13 @@
       display: flex;
       align-items: center;
       gap: 20px;
+      flex-wrap: wrap;
+      justify-content: center;
     }
 
     .legend-card img {
-      width: 120px;
-      height: 120px;
+      width: clamp(80px, 15vw, 120px);
+      height: clamp(80px, 15vw, 120px);
       border-radius: 50%;
       border: 3px solid #ff00ff;
       object-fit: cover;
@@ -111,13 +111,13 @@
 
     .legend-info h2 {
       margin: 0;
-      font-size: 2rem;
+      font-size: clamp(1.5rem, 3vw, 2rem);
       color: #00ffff;
       text-shadow: 0 0 15px #ff00ff;
     }
 
     .legend-info p {
-      font-size: 1.1rem;
+      font-size: clamp(1rem, 2vw, 1.2rem);
       margin-top: 5px;
     }
 
@@ -139,16 +139,29 @@
     }
 
     /* Sections hidden until active */
-    .section {
-      display: none;
+    .section { display: none; }
+    .section.active { display: block; }
+
+    /* Responsive List */
+    #funny-list { padding-left: 0; list-style: none; }
+    #funny-list li {
+      background: rgba(0, 0, 0, 0.4);
+      margin: 10px;
+      padding: 15px;
+      border-radius: 15px;
+      font-size: clamp(1rem, 2vw, 1.5rem);
+      cursor: pointer;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    #funny-list li:hover {
+      transform: rotate(-2deg) scale(1.05);
+      box-shadow: 0 0 20px #ff00ff, 0 0 40px #00ffff;
     }
 
-    .section.active {
-      display: block;
-    }
   </style>
 </head>
 <body>
+
   <!-- Floating chaotic emojis -->
   <div class="floating" style="left:10%; animation-delay:0s;">😂</div>
   <div class="floating" style="left:30%; animation-delay:3s;">🤯</div>
